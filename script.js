@@ -57,6 +57,7 @@ top: 150px;
 font-family: 'Josefin Sans', sans-serif;
 font-size: 18px;`
 
+
 sizeInputButton.addEventListener('click', () => {
    initialText.style.display = 'none'
    if (sizeInput.value.toString() < 16 || sizeInput.value.toString() > 100 || sizeInput.value % 1 != 0) {
@@ -70,12 +71,15 @@ sizeInputButton.addEventListener('click', () => {
    for (let i = 0; i < fieldSize * fieldSize; i++) {
       let cell = document.createElement('div')
       cell.style.cssText = `border: 1px black solid;
+      background-color: white;
              width: ${+container.style.width.slice(0, 3) / fieldSize - 2}px;
              height: ${+container.style.width.slice(0, 3) / fieldSize - 2}px;
                          `;
       container.append(cell)
       cell.addEventListener('mouseover', (e) => {
-         e.target.style.backgroundColor = 'black'
+         let randColor = '#' + (Math.random().toString(16) + '000000').substring(2, 8).toUpperCase()
+         e.target.style.backgroundColor = randColor
+            ;
       })
    }
    sizeInput.value = ''
@@ -84,7 +88,7 @@ sizeInputButton.addEventListener('click', () => {
 
 resetButton.addEventListener('click', () => {
    let arr = Array.from(container.children);
-   arr.forEach(el => el.style.backgroundColor = '')
+   arr.forEach(el => el.style.backgroundColor = 'white')
    fieldSize = 0
 })
 
